@@ -5,6 +5,15 @@ export var speed = 400  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
 var npc
 
+# Player stats
+var health = 100
+var health_max = 100
+var health_regeneration = 1
+var mana = 100
+var mana_max = 100
+var mana_regeneration = 2
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
