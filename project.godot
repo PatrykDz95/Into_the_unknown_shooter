@@ -17,3 +17,8 @@ _global_script_class_icons={
 
 config/name="Software Developer Simulator"
 run/main_scene="res://src/Root.tscn"
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0

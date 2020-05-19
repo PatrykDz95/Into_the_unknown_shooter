@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Player/player character/32 x 32 platform character_run_3.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.gd" type="Script" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Necklace.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/DialoguePopup.gd" type="Script" id=17]
 [ext_resource path="res://src/MapTileset.tres" type="TileSet" id=18]
+[ext_resource path="res://GUI/HealthBar.gd" type="Script" id=19]
+[ext_resource path="res://GUI/ManaBar.gd" type="Script" id=20]
 
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = -73
@@ -97,6 +99,7 @@ speed = 150
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -228,6 +231,7 @@ margin_top = 158.0
 margin_right = 77.0
 margin_bottom = 167.0
 color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -245,6 +249,7 @@ margin_top = 169.0
 margin_right = 77.0
 margin_bottom = 178.0
 color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -255,4 +260,6 @@ margin_top = 1.0
 margin_right = 73.0
 margin_bottom = 8.0
 color = Color( 0.196078, 0.266667, 1, 1 )
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Health" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
 [connection signal="body_entered" from="bro" to="bro" method="_on_bro_body_entered"]
