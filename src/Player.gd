@@ -9,10 +9,10 @@ var npc
 # Player stats
 var health = 100
 var health_max = 100
-var health_regeneration = 1
+var health_regeneration = 6
 var mana = 100
 var mana_max = 100
-var mana_regeneration = 2
+var mana_regeneration = 12
 var attack_playing = false
 
 # Called when the node enters the scene tree for the first time.
@@ -79,7 +79,7 @@ func _input(event):
 		if mana >= 25:
 			mana = mana - 25
 			emit_signal("player_stats_changed", self)
-			attack_playing = true
+			#attack_playing = true
 			#TODO Add attack animation
 			#var animation = get_animation_direction(last_direction) + "_fireball"
 			#$Sprite.play(animation)
