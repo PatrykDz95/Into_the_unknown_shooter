@@ -6,6 +6,8 @@ export var speed = 400  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
 var npc
 
+var direction : Vector2
+
 # Player stats
 var health = 100
 var health_max = 100
@@ -40,7 +42,7 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-		# Apply movement
+	# Apply movement
 	var movement = speed * velocity * delta
 	move_and_slide(velocity)
 	
@@ -80,7 +82,16 @@ func _input(event):
 			mana = mana - 25
 			emit_signal("player_stats_changed", self)
 			#attack_playing = true
-			#TODO Add attack animation
+			#TODO Add shot animation
 			#var animation = get_animation_direction(last_direction) + "_fireball"
 			#$Sprite.play(animation)
 
+
+func _physics_process(delta):
+	
+	var movement = direction * speed * delta
+	var collision = move_and_collide(movement)
+	
+	if collision != null and collision.collider.name == "Blob":
+		health = health - 5
+		emit_signal("player_stats_changed", self)
