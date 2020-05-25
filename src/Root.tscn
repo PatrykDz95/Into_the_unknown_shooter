@@ -22,7 +22,7 @@
 [ext_resource path="res://GUI/ManaBar.gd" type="Script" id=20]
 [ext_resource path="res://Fonts/Font.tres" type="DynamicFont" id=21]
 [ext_resource path="res://GUI/potions.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Enemies/Blob.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Entities/EnemiesSpawner/SkeletonSpawner.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = -73
@@ -360,7 +360,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blob" parent="." instance=ExtResource( 23 )]
+[node name="SkeletonSpawner" parent="." instance=ExtResource( 23 )]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Health" method="_on_Player_player_stats_changed"]
 [connection signal="body_entered" from="bro" to="bro" method="_on_bro_body_entered"]

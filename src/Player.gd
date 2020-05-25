@@ -1,5 +1,5 @@
 extends KinematicBody2D
-signal hit
+#signal hit
 signal player_stats_changed
 
 export var speed = 400  # How fast the player will move (pixels/sec).

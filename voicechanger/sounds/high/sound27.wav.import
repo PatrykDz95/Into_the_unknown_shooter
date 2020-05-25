@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound27.wav-c318f03328e76e0d19e155f62577a037.sample"
+
+[deps]
+
+source_file="res://voicechanger/sounds/high/sound27.wav"
+dest_files=[ "res://.import/sound27.wav-c318f03328e76e0d19e155f62577a037.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound02.wav-a84e364fab798a2148f25a8decb3198d.sample"
+
+[deps]
+
+source_file="res://voicechanger/sounds/med/sound02.wav"
+dest_files=[ "res://.import/sound02.wav-a84e364fab798a2148f25a8decb3198d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
