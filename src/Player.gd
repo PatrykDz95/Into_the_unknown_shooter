@@ -24,6 +24,17 @@ func _ready():
 
 
 func _process(delta):
+	
+	#Rotating the player where the mouse is pointing
+	var target_angle = 0
+	var turn_speed = deg2rad(77)
+	var dir = get_angle_to(get_global_mouse_position())
+	if abs(dir) < turn_speed:
+		rotation += dir
+	else:
+		if dir>0: rotation += turn_speed #clockwise
+		if dir<0: rotation -= turn_speed #anit - clockwise
+	
 	var velocity = Vector2()  # The player's movement vector.
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
@@ -92,6 +103,9 @@ func _physics_process(delta):
 	var movement = direction * speed * delta
 	var collision = move_and_collide(movement)
 	
-	if collision != null and collision.collider.name == "Blob":
+	# checks if the player collided with a Blob
+	if collision != null and "Blob" in collision.collider.name:
 		health = health - 5
+		print(health)
+		print(collision.collider.name)
 		emit_signal("player_stats_changed", self)

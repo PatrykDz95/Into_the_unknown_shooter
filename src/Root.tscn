@@ -102,7 +102,7 @@ speed = 150
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -363,6 +363,6 @@ __meta__ = {
 
 [node name="BlobSpawner " parent="." instance=ExtResource( 23 )]
 spawn_area = Rect2( 50, 150, 200, 100 )
-[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Health" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
 [connection signal="body_entered" from="bro" to="bro" method="_on_bro_body_entered"]

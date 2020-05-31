@@ -7,7 +7,7 @@ var tree_tilemap
 
 # Spawner variables
 export var spawn_area : Rect2 = Rect2(50, 150, 700, 700)
-export var max_blobs = 40
+export var max_blobs = 10
 export var start_blobs = 10
 var blob_count = 0
 var blob_scene = preload("res://Entities/Enemies/Blob.tscn")
