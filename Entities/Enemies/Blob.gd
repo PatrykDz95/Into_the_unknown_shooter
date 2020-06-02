@@ -1,18 +1,22 @@
 extends KinematicBody2D
 
-
+signal death
 # Node references
 var player
-
+var blob
 # Random number generator
 var rng = RandomNumberGenerator.new()
-
 # Movement variables
 export var speed = 125
 var direction : Vector2
 var last_direction = Vector2(0, 1)
 var bounce_countdown = 0
 var other_animation_playing = false
+# Blob stats
+var health = 100
+var health_max = 100
+var health_regeneration = 1
+
 
 func _ready():
 	player = get_tree().root.get_node("Root/Player")
@@ -54,13 +58,14 @@ func _on_Timer_timeout():
 		
 func _physics_process(delta):
 	var movement = direction * speed * delta
-	
 	var collision = move_and_collide(movement)
+
 	#if there has been a collision with a body other than Player the current direction of movement is rotated by a randomly generated angle
 	if collision != null and collision.collider.name != "Player" and collision.collider.name != "Blob":
 		direction = direction.rotated(rng.randf_range(PI/4, PI/2))
 		bounce_countdown = rng.randi_range(2, 5)
-
+		hit(20)
+	
 
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
@@ -84,4 +89,26 @@ func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "idle":
 		$AnimatedSprite.animation = "idle"
 		$Timer.start()
+	elif $AnimatedSprite.animation == "death":
+		get_tree().queue_delete(self)
+		$AnimatedSprite.animation = "death"
 	other_animation_playing = false
+	
+	
+func _process(delta):
+	# Regenerates health
+	health = min(health + health_regeneration * delta, health_max)
+	
+func hit(damage):
+	health -= damage
+	if health > 0:
+		$AnimationPlayer.play("Hit")
+	else:
+		$Timer.stop()
+		direction = Vector2.ZERO
+		set_process(false)
+		other_animation_playing = true
+		#TODO: add death animation
+		$AnimatedSprite.play("death")
+		emit_signal("death")
+

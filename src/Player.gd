@@ -5,9 +5,7 @@ signal player_stats_changed
 export var speed = 400  # How fast the player will move (pixels/sec).
 var screen_size  # Size of the game window.
 var npc
-
 var direction : Vector2
-
 # Player stats
 var health = 100
 var health_max = 100
@@ -16,6 +14,11 @@ var mana = 100
 var mana_max = 100
 var mana_regeneration = 12
 var attack_playing = false
+# Attack variables
+var attack_cooldown_time = 1000
+var next_attack_time = 0
+var attack_damage = 30
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -106,6 +109,6 @@ func _physics_process(delta):
 	# checks if the player collided with a Blob
 	if collision != null and "Blob" in collision.collider.name:
 		health = health - 5
-		print(health)
-		print(collision.collider.name)
+		#print(health)
+		#print(collision.collider.name)
 		emit_signal("player_stats_changed", self)

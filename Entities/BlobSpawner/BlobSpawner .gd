@@ -20,6 +20,9 @@ func instance_skeleton():
 	var blob = blob_scene.instance()
 	add_child(blob)
 
+	# Connect Skeleton's death signal to the spawner
+	blob.connect("death", self, "_on_Blob_death")
+
 	# Place the skeleton in a valid position
 	var valid_position = false
 	while not valid_position:
@@ -75,3 +78,7 @@ func _on_Timer_timeout():
 	if blob_count < max_blobs:
 		instance_skeleton()
 		blob_count = blob_count + 1
+		
+		
+func _on_Blob_death():
+	blob_count = blob_count - 1
