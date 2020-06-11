@@ -109,6 +109,7 @@ func hit(damage):
 		set_process(false)
 		other_animation_playing = true
 		#TODO: add death animation
+		$CollisionShape2D.disabled = true
 		$AnimatedSprite.play("death")
 		emit_signal("death")
 
